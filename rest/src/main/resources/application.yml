@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://database-1.cuh2qs0oie3z.us-east-1.rds.amazonaws.com:5432/postgres??sslmode=require
+    username: postgres
+    password: Rexbolts123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
