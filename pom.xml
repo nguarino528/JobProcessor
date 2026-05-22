@@ -16,14 +16,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<modules>
-		<module>nonrest</module>
 		<module>rest</module>
-		<module>evolution</module>
-		<module>links</module>
 	</modules>
 
 	<dependencies>
