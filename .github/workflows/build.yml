@@ -32,8 +32,14 @@ jobs:
       - name: Build jar
         run: ./mvnw clean package -DskipTests
 
-      - name: Upload jar artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: job-app-jar
-          path: rest/target/*.jar
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker image
+        run: docker build -f rest/Dockerfile -t job-app:${{ github.sha }} .
+
+      - name: Tag Docker image
+        run: docker tag job-app:${{ github.sha }} ${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
