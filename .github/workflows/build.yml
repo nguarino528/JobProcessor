@@ -54,3 +54,15 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/JobProcessor
+            git pull origin main
+            chmod +x scripts/deploy.sh
+            ./scripts/deploy-job-app.sh ${{ github.sha }}
