@@ -40,7 +40,11 @@ class JobController {
 	}
 
 	// Aggregate root
+    @GetMapping("/health")
+    String health() {
 
+        return "Healthy";
+    }
 	// tag::get-aggregate-root[]
 	@GetMapping("/jobs")
 	CollectionModel<EntityModel<Job>> all() {
