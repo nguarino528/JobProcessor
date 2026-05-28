@@ -52,8 +52,17 @@ jobs:
       - name: Tag Docker image
         run: docker tag job-app:${{ github.sha }} ${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
 
+      - name: Tag latest
+        run: |
+          docker tag job-app:${{ github.sha }} \
+            ${{ secrets.ECR_REPOSITORY }}:latest
+
       - name: Push Docker image
         run: docker push ${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Push latest
+        run: |
+          docker push ${{ secrets.ECR_REPOSITORY }}:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
