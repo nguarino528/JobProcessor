@@ -64,5 +64,5 @@ jobs:
           script: |
             cd ~/JobProcessor
             git pull origin main
-            chmod +x scripts/deploy.sh
+            chmod +x scripts/deploy-job-app.sh
             ./scripts/deploy-job-app.sh ${{ github.sha }}
