@@ -1,4 +1,4 @@
-package payroll;
+package payroll.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
